@@ -1,0 +1,54 @@
+mysqli_connect($host, $user, $password)
+
+
+-------------------------------PROCEDURAL SETTING CONNECTION TO DATABASE
+<?php
+$host = 'localhost:3306';
+$user = 'root';
+$pass = '';
+$conn = mysqli_connect($host, $user, $pass);
+if(! $conn ){
+die('could not connect: '.mysqli_error());
+}
+echo ' Connected Successfully';
+mysqli_close($conn);
+?>
+//mysqli_connect_errno(); 
+=====================================Creating Database
+$sql = 'CREATE DATABASE IBEMPLOYEE';
+if(mysqli_query($conn, $sql)){
+echo 'Data base created successfully';
+}
+else{
+echo 'Data base not created successfully';
+}
+=====================================Creating Table
+$create_table="CREATE TABLE freshers(
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(30) NOT NULL, 
+email VARCHAR(40) NOT NULL, 
+mobile VARCHAR(30) NOT NULL, 
+current_city VARCHAR(50) NOT NULL)";
+
+if(mysqli_query($conn, $create_table)){
+echo 'Table created succesfully';
+}
+else{
+echo 'Oops table is not created succesfully';
+}
+
+--------------------------------PROCEDURAL METHOD TO WRITE QUERY
+mysqli_query(CONNECTION NAME , SQL QUERY);
+EXAMPLE :
+mysqli_query($conn, $query);
+
+--------------------------------OBJECT ORIENTED
+$conn= new mysqli($servername, $username , $ password); 
+
+if($conn-> connect_error){
+die("Connection failed : " .$conn->connect_error); 
+}
+echo "Connected Successfully";
+
+//$conn-> connect_errno
+
